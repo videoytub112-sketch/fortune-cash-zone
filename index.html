@@ -7,69 +7,81 @@
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { background: #0b0c10; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #fff; display: flex; flex-direction: column; align-items: center; min-height: 100vh; padding: 15px; gap: 15px; }
-        .ad-zone-top { width: 100%; max-width: 380px; min-height: 60px; background: #1f2833; border: 1px dashed #45f3ff; border-radius: 12px; display: flex; justify-content: center; align-items: center; padding: 5px; text-align: center; font-size: 11px; color: #66fcf1; box-shadow: 0 0 10px rgba(102,252,241,0.1); }
-        .ad-zone-links { width: 100%; max-width: 380px; background: #1f2833; border: 1px solid #45f3ff; border-radius: 12px; padding: 12px; font-size: 12px; color: #c5c6c7; line-height: 1.6; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 0 10px rgba(102,252,241,0.05); }
+        
+        .header-partner-block { width: 100%; max-width: 380px; min-height: 60px; background: #1f2833; border: 1px dashed #45f3ff; border-radius: 12px; display: flex; justify-content: center; align-items: center; padding: 5px; text-align: center; font-size: 11px; color: #66fcf1; box-shadow: 0 0 10px rgba(102,252,241,0.1); }
+        .footer-partner-block { width: 100%; max-width: 380px; background: #1f2833; border: 1px solid #45f3ff; border-radius: 12px; padding: 12px; font-size: 12px; color: #c5c6c7; line-height: 1.6; display: flex; flex-direction: column; gap: 6px; box-shadow: 0 0 10px rgba(102,252,241,0.05); }
+        
         .app-shell { width: 100%; max-width: 380px; min-height: 630px; background: #1f2833; border: 1px solid #45f3ff; border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.7); }
         .screen { display: none; flex-direction: column; padding: 15px; width: 100%; height: 100%; }
         .screen.active { display: flex; }
+        
         .login-box { display: flex; flex-direction: column; gap: 15px; text-align: center; margin: auto 0; padding: 20px; }
         .login-box h2 { font-size: 24px; color: #66fcf1; text-shadow: 0 0 10px rgba(102,252,241,0.5); font-weight: 800; letter-spacing: 1px; }
         .login-input { background: #0b0c10; border: 1px solid #45f3ff; padding: 14px; border-radius: 12px; color: #fff; font-size: 16px; text-align: center; outline: none; }
-        .login-input:focus { box-shadow: 0 0 15px rgba(102,252,241,0.3); }
+        
         .cabinet-bar { background: #0b0c10; border-radius: 16px; padding: 15px; display: flex; flex-direction: column; gap: 12px; border: 1px solid #45f3ff; margin-bottom: 15px; position: relative; }
         .cabinet-bar::before { content: 'ЛИЧНЫЙ КАБИНЕТ'; position: absolute; top: -8px; left: 15px; background: #1f2833; padding: 0 8px; font-size: 9px; color: #45f3ff; font-weight: bold; letter-spacing: 1px; }
         .user-title { font-size: 15px; font-weight: bold; color: #66fcf1; border-bottom: 1px dashed #2c3147; padding-bottom: 5px; }
         .row-bal { display: flex; justify-content: space-between; font-size: 13px; color: #c5c6c7; align-items: center; }
-        .val-bal { font-weight: bold; color: #2ecc71; font-size: 16px; text-shadow: 0 0 10px rgba(46,204,113,0.2); }
-        .val-bal.games { color: #ff9f43; text-shadow: 0 0 10px rgba(255,159,67,0.2); }
+        .val-bal { font-weight: bold; color: #2ecc71; font-size: 16px; }
+        .val-bal.games { color: #ff9f43; }
+        
         .exchange-panel { background: rgba(102,252,241,0.05); border: 1px solid rgba(102,252,241,0.2); padding: 10px; border-radius: 8px; margin-top: 5px; text-align: center; }
-        .exch-btn { width: 100%; background: #66fcf1; border: none; color: #0b0c10; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; transition: background 0.2s; }
-        .exch-btn:active { background: #45f3ff; }
+        .exch-btn { width: 100%; background: #66fcf1; border: none; color: #0b0c10; padding: 8px; border-radius: 6px; font-size: 11px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        
         .cash-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px; }
-        .c-btn { height: 40px; border: none; border-radius: 10px; font-size: 12px; font-weight: bold; cursor: pointer; color: #fff; text-transform: uppercase; transition: opacity 0.1s; }
-        .c-btn:active { opacity: 0.8; }
-        .c-in { background: #2ecc71; box-shadow: 0 4px 12px rgba(46,204,113,0.2); }
-        .c-out { background: #e74c3c; box-shadow: 0 4px 12px rgba(231,76,60,0.2); }
+        .c-btn { height: 40px; border: none; border-radius: 10px; font-size: 12px; font-weight: bold; cursor: pointer; color: #fff; text-transform: uppercase; }
+        .c-in { background: #2ecc71; }
+        .c-out { background: #e74c3c; }
+        
         .slots-container { position: relative; width: 230px; height: 320px; background: #0b0c10; border-radius: 24px; padding: 8px; margin: 15px auto; border: 1px solid rgba(102,252,241,0.2); }
         .slots-viewport { width: 100%; height: 100%; overflow: hidden; position: relative; border-radius: 18px; border: 3px solid #db7bf2; box-shadow: 0 0 20px rgba(219,123,242,0.5); }
         .slots-track { display: flex; flex-direction: column; position: absolute; width: 100%; top: 0; left: 0; }
         .slot-prize-box { height: 98px; display: flex; justify-content: center; align-items: center; }
-        .slot-coin { width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, #1f2833 0%, #0b0c10 100%); border: 3px solid #66fcf1; box-shadow: 0 0 12px rgba(102,252,241,0.3); display: flex; flex-direction: column; justify-content: center; align-items: center; font-weight: bold; font-size: 16px; color: #66fcf1; }
-        .slot-prize-box.gold .slot-coin { background: radial-gradient(circle, #f39c12 0%, #bb6b00 100%); border-color: #f1c40f; color: #fff; box-shadow: 0 0 15px rgba(241,196,15,0.5); }
-        .slot-coin span { font-size: 8px; text-transform: uppercase; margin-top: 2px; opacity: 0.8; letter-spacing: 0.5px; }
+        .slot-coin { width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, #1f2833 0%, #0b0c10 100%); border: 3px solid #66fcf1; display: flex; flex-direction: column; justify-content: center; align-items: center; font-weight: bold; font-size: 16px; color: #66fcf1; }
+        .slot-prize-box.gold .slot-coin { background: radial-gradient(circle, #f39c12 0%, #bb6b00 100%); border-color: #f1c40f; color: #fff; }
+        .slot-coin span { font-size: 8px; text-transform: uppercase; margin-top: 2px; opacity: 0.8; }
+        
         .pointer-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent; z-index: 10; }
         .pointer-l { left: -14px; border-left: 14px solid #db7bf2; }
         .pointer-r { right: -14px; border-right: 14px solid #db7bf2; }
         .fade-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(11,12,16,0.9) 0%, rgba(11,12,16,0) 25%, rgba(11,12,16,0) 75%, rgba(11,12,16,0.9) 100%); pointer-events: none; z-index: 2; }
+        
         .controls-grid { display: flex; gap: 12px; width: 100%; margin-top: 5px; }
-        .btn-spin { flex: 1; height: 52px; border: none; border-radius: 14px; color: #fff; font-size: 12px; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
-        .spin-free { background: linear-gradient(90deg, #7f5af0 0%, #a78bfa 100%); box-shadow: 0 4px 15px rgba(127,90,240,0.3); }
-        .spin-pay { background: linear-gradient(90deg, #ff9f43 0%, #ffb167 100%); box-shadow: 0 4px 15px rgba(255,159,67,0.3); }
-        .btn-spin:disabled { opacity: 0.3; cursor: not-allowed; box-shadow: none; }
+        .btn-spin { flex: 1; height: 52px; border: none; border-radius: 14px; color: #fff; font-size: 12px; font-weight: bold; cursor: pointer; text-transform: uppercase; }
+        .spin-free { background: linear-gradient(90deg, #7f5af0 0%, #a78bfa 100%); }
+        .spin-pay { background: linear-gradient(90deg, #ff9f43 0%, #ffb167 100%); }
+        .btn-spin:disabled { opacity: 0.3; cursor: not-allowed; }
+        
         .nav-bar { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid #45f3ff; margin-bottom: 15px; }
         .btn-back { background: none; border: none; color: #66fcf1; font-size: 22px; font-weight: bold; cursor: pointer; }
         .billing-card { background: #0b0c10; border: 1px solid #2c3147; padding: 15px; border-radius: 14px; display: flex; flex-direction: column; gap: 12px; }
         .field-group { display: flex; flex-direction: column; gap: 5px; }
-        .field-group label { font-size: 11px; color: #c5c6c7; text-transform: uppercase; letter-spacing: 0.5px; }
+        .field-group label { font-size: 11px; color: #c5c6c7; text-transform: uppercase; }
         .memo-box { background: #1f2833; padding: 12px; border-radius: 10px; font-size: 12px; line-height: 1.5; border-left: 3px solid #ff9f43; }
-        .submit-btn { width: 100%; height: 48px; background: #66fcf1; border: none; border-radius: 10px; color: #0b0c10; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 13px; letter-spacing: 0.5px; }
+        .submit-btn { width: 100%; height: 48px; background: #66fcf1; border: none; border-radius: 10px; color: #0b0c10; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 13px; }
         .bank-dropdown { background: #0b0c10; border: 1px solid #2c3147; padding: 12px; border-radius: 8px; color: #fff; outline: none; font-size: 14px; }
+        
         .pop-modal { display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11,12,16,0.95); z-index: 100; justify-content: center; align-items: center; padding: 20px; }
-        .pop-card { background: #1f2833; width: 90%; border-radius: 24px; padding: 25px 15px; text-align: center; border: 2px solid #db7bf2; box-shadow: 0 0 25px rgba(219,123,242,0.3); }
+        .pop-card { background: #1f2833; width: 90%; border-radius: 24px; padding: 25px 15px; text-align: center; border: 2px solid #db7bf2; }
         .pop-card h2 { color: #db7bf2; font-size: 22px; margin-bottom: 6px; }
         .pop-card p { font-size: 14px; color: #c5c6c7; margin-bottom: 20px; }
+        
         .adm-tabs { display: flex; background: #0b0c10; border-radius: 8px; padding: 4px; margin-bottom: 15px; gap: 4px; }
         .adm-t-btn { flex: 1; background: transparent; border: none; color: #c5c6c7; padding: 8px; font-size: 11px; font-weight: bold; cursor: pointer; border-radius: 6px; }
         .adm-t-btn.active { background: #45f3ff; color: #0b0c10; }
-        .adm-scroll-list { display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow-y: auto; padding-right: 2px; }
+        .adm-scroll-list { display: flex; flex-direction: column; gap: 8px; max-height: 260px; overflow-y: auto; }
         .adm-row-item { background: #0b0c10; padding: 10px; border-radius: 8px; border: 1px solid #2c3147; font-size: 12px; display: flex; justify-content: space-between; align-items: center; }
         .adm-actions { display: flex; gap: 5px; }
         .adm-sm-btn { padding: 5px 10px; border: none; border-radius: 5px; color: #fff; font-size: 10px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="ad-zone-top" id="slotTopBanner">[ Место под рекламный Баннер Linkslot ]</div>
+
+    <div class="header-partner-block" id="slotTopBanner">[ Место под рекламный Баннер Linkslot ]</div>
+
     <div class="app-shell">
+        <!-- ЭКРАН ВХОДА -->
         <div class="screen active" id="scrAuth">
             <div class="login-box">
                 <h2>MATRIX CASH</h2>
@@ -79,6 +91,14 @@
                 <p style="font-size:11px; color:#66fcf1; margin-top:25px; cursor:pointer; opacity:0.6;" onclick="gateAdminPanel()">🔐 Панель управления администратора</p>
             </div>
         </div>
+
+        <!-- ГЛАВНАЯ ИГРА -->
         <div class="screen" id="scrGame">
             <div class="cabinet-bar">
                 <div class="user-title" id="lblNick">Игрок: -</div>
+                <div class="row-bal"><span>Выводной баланс (Выигрыш):</span><span class="val-bal" id="lblCashOut">0.00 ₽</span></div>
+                <div class="row-bal"><span>Доступно платных игр:</span><span class="val-bal games" id="lblGamesCount">0 попыток</span></div>
+                <div class="exchange-panel"><button class="exch-btn" onclick="triggerInternalExchange()">Обменять выигрыш на игры (50 ₽ = 1 игра)</button></div>
+                <div class="cash-grid">
+                    <button class="c-btn c-in" onclick="openScreen('scrDeposit')">Купить игры</button>
+                    <button class="c-btn c-out" onclick="openScreen('scrWithdraw')">Вывод средств</button>
